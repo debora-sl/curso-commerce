@@ -102,4 +102,58 @@ export const Container = styled.aside<ContainerProps>`
             }
         }
     }
+
+  //estilização para mobiles
+  @media (max-width: 720px) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom:0;
+    z-index: 999;
+
+    width: 100%;
+    height: 5rem;
+    //barra de scroll
+    overflow-y: auto;
+    padding: 0 0;
+
+    //escondendo o botão
+    button{
+      display: none;
+    }
+
+    nav{
+      height: 100%;
+
+      ul{
+        flex-direction: row;
+        align-items: center;
+      }
+
+      li {
+        a {
+          flex-direction: column;
+          padding: 0rem;
+
+          svg {
+            width: 3.25rem;
+            height: 3.25rem;
+          }
+
+          //escondendo os titulos
+          span{
+            display: none;
+          }
+
+          &.active {
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+
+  }
 `
