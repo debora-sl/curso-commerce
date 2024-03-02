@@ -153,7 +153,5 @@ export const Container = styled.aside<ContainerProps>`
         }
       }
     }
-
-
   }
 `
