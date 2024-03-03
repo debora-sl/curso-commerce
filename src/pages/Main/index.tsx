@@ -1,3 +1,5 @@
+//chamando o componente que chama as sub páginas
+import { Outlet } from 'react-router-dom'
 
 import { Container } from './styles'
 import { Sidebar } from '../../components/Sidebar'
@@ -10,6 +12,7 @@ export default function Main() {
 
       <section>
         <img src={logoImg} />
+        <Outlet />
       </section>
     </Container>
   )
