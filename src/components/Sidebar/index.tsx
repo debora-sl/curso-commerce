@@ -1,6 +1,9 @@
 //importando o useState para a lógica de expansão do menu
 import { useState } from 'react'
 
+//importando o NavLink que substitui o a
+import { NavLink } from 'react-router-dom'
+
 import { Container } from './styles'
 
 //importando as imagens
@@ -29,28 +32,28 @@ export function Sidebar(){
     <nav>
       <ul>
         <li>
-          <a href="#" className='active'>
+          <NavLink to='/'>
             <BurgerIcon />
             <span>Hambúrgueres</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="#">
+          <NavLink to='pizzas'>
             <PizzaIcon />
             <span>Pizzas</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="#">
+          <NavLink to='drinks'>
             <SodaIcon />
             <span>Bebidas</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="#">
+          <NavLink to='ice-creams'>
             <IceCreamIcon />
             <span>Sorvetes</span>
-          </a>
+          </NavLink>
         </li>
       </ul>
     </nav>
