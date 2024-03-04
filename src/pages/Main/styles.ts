@@ -13,7 +13,7 @@ export const Container = styled.main`
     height: 100vh;
     //barra de scroll auto
     overflow-y: auto;
-    padding: 2rem 1.875rem;
+    padding: 3rem 1.875rem;
 
     //estilização para a logo
     img {
