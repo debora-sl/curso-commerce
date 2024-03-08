@@ -17,7 +17,7 @@ export default function Burgers() {
       snack: 'burger',
       name: 'Extra bacon',
       description: 'Criado para os amantes de bacon, possui em todas as suas camadas bacon bem assado e ainda queijo e carne.',
-      price: 23.00,
+      price: 23.50,
       image: 'https://i.imgur.com/B4J04AJ.jpg'
     },
   ]
