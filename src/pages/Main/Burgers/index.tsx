@@ -1,5 +1,6 @@
 import { Head } from '../../../components/Head'
 import { SnackTitle } from '../../../components/SnackTitle'
+import { Snacks } from '../../../components/Snacks'
 
 //incluir página como export default
 export default function Burgers() {
@@ -28,6 +29,7 @@ export default function Burgers() {
       {/* chamando o componente Head com a propriedade title e informando o conteúdo */}
       <Head title='Hambúrgueres' />
       <SnackTitle>Hambúrgueres</SnackTitle>
+      <Snacks snacks={data}></Snacks>
     </>
   )
 }
