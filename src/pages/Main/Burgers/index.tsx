@@ -1,24 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useSnack } from '../../../hooks/useSnack'
 
 import { Head } from '../../../components/Head'
-import { SnackTitle } from '../../../components/SnackTitle'
 import { Snacks } from '../../../components/Snacks'
-
-import { getBurgers } from '../../../services/api'
-import { SnackData } from '../../../interfaces/SnackData'
+import { SnackTitle } from '../../../components/SnackTitle'
 
 //incluir página como export default
 export default function Burgers() {
-  //declarando o state
-  const [burgers, setBurgers] = useState<SnackData[]>([])
-
-  useEffect(() => {
-    (async () => {
-      const burgerRequest = await getBurgers()
-
-      setBurgers(burgerRequest.data)
-    })()
-  }, [])
+  const {burgers} = useSnack()
 
   return(
     //criando o array fixo de dados
