@@ -1,4 +1,5 @@
 import { currencyFormat } from '../../helpers/currencyFormat'
+import { SkeletonSnack } from './SkeletonSnack'
 import { Container } from './styles'
 
 //importando o ícone de mais, da biblioteca react-icons
@@ -11,8 +12,12 @@ interface SnacksProps{
 export function Snacks({snacks}: SnacksProps){
   return (
     <Container>
-      {/*maap, para iterar os snacks */}
-      {snacks.map((snack) => (
+      {/*if para Loading da tela */}
+      {!snacks.length ?
+        [1,2,3,4].map((n) => <SkeletonSnack key={n}/>)
+        :
+      /*maap, para iterar os snacks */
+        snacks.map((snack) => (
       /*dado que a div está dentro do maap, precisa de uma Key */
       <div key={snack.id} className='snack'>
         <h2>{snack.name}</h2>
