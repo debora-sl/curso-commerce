@@ -5,12 +5,13 @@ import { SnackTitle } from '../../../components/SnackTitle';
 import { Snacks } from '../../../components/Snacks';
 
 import { getIceCreams } from '../../../services/api'
+import { SnackData } from '../../../interfaces/SnackData';
 
 
 //incluir página como export default
 export default function IceCreams() {
   //declarando o state
-  const [iceCreams, setIceCreams] = useState([])
+  const [iceCreams, setIceCreams] = useState<SnackData[]>([])
 
   useEffect(() => {
     (async () => {
