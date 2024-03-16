@@ -11,17 +11,6 @@ interface Snack extends SnackData {
   subtotal: number
 }
 
-interface RemoveSnackFromCart {
-  id: number
-  snack: string
-}
-
-interface UpdateCartProps {
-  id: number
-  snack: string
-  newQuantity: number
-}
-
 interface CartContextProps {
   cart: Snack[]
 
@@ -29,7 +18,16 @@ interface CartContextProps {
   addSnackIntoCart: (snack: SnackData) => void
 
   //chamando a função que remove produto no carrinho
-  //removeSnackFromCart: ({ id, snack }: RemoveSnackFromCart) => void
+  removeSnackFromCart: ( snack: Snack ) => void
+
+  //chamando a função que incrementa a quantidade de produto no carrinho
+  snackCartIncrement: (snack: Snack) => void
+
+  //chamando a função que incrementa a quantidade de produto no carrinho
+  snackCartDecrement: (snack: Snack) => void
+
+  //chamando a função que confirma o Pedido
+  confirmOrder: () => void
 
   //chamando a função que atualiza o carrinho
   //updateCart: ({ id, snack, newQuantity }: UpdateCartProps) => void
@@ -82,8 +80,57 @@ export function CartProvider({children}: CartProviderProps) {
       setCart(newCart)
     }
 
+    //criando a função que remove produto no carrinho
+    function removeSnackFromCart(snack: Snack) {
+      const newCart = cart.filter((item) => !(item.id === snack.id && item.snack === snack.snack))
+
+      setCart(newCart)
+    }
+
+    function upDateSnackQuantity(snack: Snack, newQuantity: number) {
+      if(newQuantity <= 0) return
+
+      const snackExistentInCart = cart.find((item) => item.id === snack.id && item.snack === snack.snack)
+
+      if(!snackExistentInCart) return
+
+      const newCart = cart.map((item) => {
+        if(item.id === snackExistentInCart.id && item.snack === snackExistentInCart.snack){
+          return {
+            ...item,
+            quantity: newQuantity,
+            subtotal: item.price * newQuantity,
+          }
+        }
+        return item
+      })
+      setCart(newCart)
+    }
+
+    //criando a função que icrementa produto no carrinho
+    function snackCartIncrement(snack: Snack) {
+      upDateSnackQuantity(snack, snack.quantity + 1)
+    }
+
+    //criando a função que decrementa produto no carrinho
+    function snackCartDecrement(snack: Snack) {
+      upDateSnackQuantity(snack, snack.quantity - 1)
+    }
+
+    //criando a função que confirma o pedido
+    function confirmOrder(){
+      return
+    }
+
     return (
-      <CartContext.Provider value={{cart, addSnackIntoCart}}>
+      <CartContext.Provider value={{
+        cart,
+        addSnackIntoCart,
+        removeSnackFromCart,
+        snackCartIncrement,
+        snackCartDecrement,
+        confirmOrder
+      }}>
         {children}
       </CartContext.Provider>
     )
