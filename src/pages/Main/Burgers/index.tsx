@@ -9,7 +9,6 @@ export default function Burgers() {
   const {burgers} = useSnack()
 
   return(
-    //criando o array fixo de dados
     <>
       {/* chamando o componente Head com a propriedade title e informando o conteúdo */}
       <Head title='Hambúrgueres' />
