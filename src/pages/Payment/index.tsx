@@ -1,5 +1,15 @@
-import { Container } from './styles'
+import { Head } from '../../components/Head'
+import { OrderHeader } from '../../components/OrderHeader'
 
-export function Payment(){
-  return<Container></Container>
+import { Container, Inner } from './styles'
+
+export default function Payment(){
+  return (
+    <Container>
+      <Head title='Pagamento' />
+      <OrderHeader />
+      <Inner></Inner>
+
+    </Container>
+  )
 }
