@@ -38,7 +38,7 @@ export default function Payment(){
 
           <div className='field'>
             <label htmlFor="zipcode">CEP</label>
-            <input type="text" name="zipcode" id="zipcode" autoComplete='postal-code' style={{ width: '120px' }}/>
+            <input type="text" name="zipcode" id="zipcode" autoComplete='postal-code' style={ {width: '120px'} }/>
           </div>
 
           <div className='field'>
@@ -103,8 +103,33 @@ export default function Payment(){
                 <option value='DF'>Distrito Federal</option>
              </select>
             </div>
-
           </div>
+
+          <h4>Pagamento</h4>
+
+          <div className='field'>
+            <label htmlFor="credit-card-number">Número do Cartão</label>
+            <input type="text" name="credit-card-number" id="credit-card-number" autoComplete='cc-number' />
+          </div>
+
+          <div className='field'>
+            <label htmlFor="credit-card-holder-name">Nome impresso no cartão</label>
+            <input type="text" name="credit-card-holder-name" id="credit-card-holder-name" autoComplete='cc-name' />
+          </div>
+
+          <div className='grouped'>
+          <div className='field'>
+             <label htmlFor="credit-card-expiration">Validade (MM/AA)</label>
+             <input type="text" name="credit-card-expiration" id="credit-card-expiration" autoComplete='cc-exp'/>
+            </div>
+
+
+            <div className='field'>
+             <label htmlFor="credit-card-code">Código de Segurança (CVV)</label>
+             <input type="text" name="credit-card-code" id="credit-card-code" autoComplete='cc-csc'/>
+            </div>
+          </div>
+
         </Form>
       </Inner>
 
