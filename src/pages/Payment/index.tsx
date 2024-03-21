@@ -1,4 +1,5 @@
 import { Head } from '../../components/Head'
+import { PayOrder } from '../../components/OrderCloseAction/PayOrder'
 import { OrderHeader } from '../../components/OrderHeader'
 
 import { Container, Inner, Form } from './styles'
@@ -129,8 +130,9 @@ export default function Payment(){
              <input type="text" name="credit-card-code" id="credit-card-code" autoComplete='cc-csc'/>
             </div>
           </div>
-
         </Form>
+
+        <PayOrder />
       </Inner>
 
     </Container>
