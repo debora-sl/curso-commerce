@@ -1,5 +1,9 @@
 //criando o context do carrinho
-import { createContext, useState, useEffect, ReactNode  } from 'react'
+import { createContext, useState, ReactNode  } from 'react'
+
+// useNavigate para navegação
+import { useNavigate } from 'react-router-dom';
+
 import { toast } from 'react-toastify';
 
 import { SnackData } from '../interfaces/SnackData';
@@ -29,8 +33,9 @@ interface CartContextProps {
   //chamando a função que confirma o Pedido
   confirmOrder: () => void
 
-  //chamando a função que atualiza o carrinho
-  //updateCart: ({ id, snack, newQuantity }: UpdateCartProps) => void
+  //chamando a função de pagamento de pedido
+  payOrder: () => void
+
 }
 
 interface CartProviderProps {
@@ -42,6 +47,9 @@ export const CartContext = createContext({} as CartContextProps)
 
 // Função que prover
 export function CartProvider({children}: CartProviderProps) {
+  //criando o hook para navegação
+  const navigate = useNavigate()
+
   //criando o array carrinho
   const [cart, setCart] = useState<Snack[]>([])
 
@@ -119,6 +127,12 @@ export function CartProvider({children}: CartProviderProps) {
 
     //criando a função que confirma o pedido
     function confirmOrder(){
+      // chamando o nabigate e informando a rota
+      navigate('/payment')
+    }
+
+    //criando a função
+    function payOrder(){
       return
     }
 
@@ -129,7 +143,8 @@ export function CartProvider({children}: CartProviderProps) {
         removeSnackFromCart,
         snackCartIncrement,
         snackCartDecrement,
-        confirmOrder
+        confirmOrder,
+        payOrder,
       }}>
         {children}
       </CartContext.Provider>
