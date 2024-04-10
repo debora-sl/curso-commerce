@@ -1,37 +1,53 @@
+import { useForm, SubmitHandler } from 'react-hook-form'
+
 import { Head } from '../../components/Head'
 import { PayOrder } from '../../components/OrderCloseAction/PayOrder'
 import { OrderHeader } from '../../components/OrderHeader'
 
 import { Container, Inner, Form } from './styles'
 
+type FieldValues = {
+  fullName: string
+  email: string
+  mobile: string
+}
+
 export default function Payment(){
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>()
+  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log('data', data)
+
   return (
     <Container>
       <Head title='Pagamento' />
       <OrderHeader />
       <Inner>
-        <Form >
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <h4>Informações Pessoais</h4>
 
           <div className='field'>
-            <label htmlFor="full-name">Nome e Sobrenome</label>
-            <input type="text" name="full-name" id="full-name" autoComplete='name'/>
+            <label htmlFor="fullName">Nome e Sobrenome</label>
+            <input type="text" id="fullName" autoComplete='name' {...register('fullName', {required: true})} />
+            { errors.fullName && <p className='error'>Nome e sobrenome é um campo obrigatório.</p> }
           </div>
 
           <div className='grouped'>
             <div className='field'>
              <label htmlFor="email">E-mail</label>
-              <input type="email" name="email" id="email" autoComplete='email'/>
+              <input type="email" name="email" id="email" autoComplete='email' required/>
             </div>
 
             <div className='field'>
              <label htmlFor="mobile">Celular</label>
-              <input type="tel" name="mobile" id="mobile" autoComplete='phone'/>
+              <input type="tel" name="mobile" id="mobile" autoComplete='phone' required/>
             </div>
 
             <div className='field'>
               <label htmlFor="document">CPF/ CNPJ</label>
-              <input type="text" name="document" id="document"/>
+              <input type="text" name="document" id="document" />
             </div>
           </div>
 
@@ -130,9 +146,9 @@ export default function Payment(){
              <input type="text" name="credit-card-code" id="credit-card-code" autoComplete='cc-csc'/>
             </div>
           </div>
-        </Form>
 
-        <PayOrder />
+          <PayOrder />
+        </Form>
       </Inner>
 
     </Container>
