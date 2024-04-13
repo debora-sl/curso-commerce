@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
-import * as yup from 'yup'
 import { IMaskInput } from 'react-imask'
 
 import { Head } from '../../components/Head'
@@ -9,15 +8,7 @@ import { OrderHeader } from '../../components/OrderHeader'
 
 import { Container, Inner, Form } from './styles'
 
-const schema = yup
-  .object({
-    fullName: yup.string().required('Nome e sobrenome são obrigatórios').min(3, 'Nome e sobrenome muito curto.'),
-    email: yup.string().email().required(),
-    mobile: yup.string().required(),
-  })
-  .required()
-
-type FieldValues = yup.InferType<typeof schema>
+import { schema, FieldValues } from './validationSchema'
 
 
 export default function Payment(){
