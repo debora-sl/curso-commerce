@@ -13,7 +13,7 @@ export const schema = yup
     .string()
     .required('O celular é obrigatório.')
     .transform((value) => value.replace(/[^\d]/g, ''))
-    .test('validateMobile', 'O celular inválido.', (value) => isValidPhone(value)),
+    .test('validateMobile', 'O celular informado é inválido.', (value) => isValidPhone(value)),
     document: yup
       .string()
       .required('O CPF/CNPJ é obrigatório.')
