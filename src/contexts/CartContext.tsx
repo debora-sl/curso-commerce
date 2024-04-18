@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 
+import { CustomerData } from '../interfaces/CustomerDate';
 import { SnackData } from '../interfaces/SnackData';
 
 import { snackEmoji } from '../helpers/snackEmoji';
@@ -34,7 +35,7 @@ interface CartContextProps {
   confirmOrder: () => void
 
   //chamando a função de pagamento de pedido
-  payOrder: () => void
+  payOrder: (customer: CustomerData) => void
 
 }
 
@@ -132,7 +133,9 @@ export function CartProvider({children}: CartProviderProps) {
     }
 
     //criando a função
-    function payOrder(){
+    function payOrder(customer: CustomerData){
+      console.log('payOrder', cart, customer)
+
       return
     }
 
