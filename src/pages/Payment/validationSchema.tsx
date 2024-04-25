@@ -7,9 +7,9 @@ export const schema = yup
     fullName: yup
       .string()
       .required('O nome é um campo obrigatório.')
-      .min(3, 'O nome deve ser completo.')
+      .min(3, 'O nome deve ser completo e sem abreviações.')
       .matches(/(\w.+\s).+/gi, 'O nome deve conter o sobrenome.'),
-    email: yup.string().required('O email é obrigatório.').email('O email deve ser válido.'),
+    email: yup.string().required('O email é um campo obrigatório.').email('O email deve ser válido.'),
     mobile: yup
     .string()
     .required('O celular é obrigatório.')
