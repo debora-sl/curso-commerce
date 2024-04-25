@@ -69,17 +69,11 @@ export default function Payment(){
               name='mobile'
               control={control}
               render={({ field }) => (
-                <IMaskInput
-                  type='tel'
-                  id='mobile'
-                  autoComplete='phone'
-                  mask={'(00) 90000-0000'}
-                  {...field}
-                />
+                <input type='text' id='mobile' autoComplete='phone' {...field} />
               )}
             />
 
-              { errors.mobile && <p className='error'>{errors.mobile.message}</p> }
+            { errors.mobile && <p className='error'>{errors.mobile.message}</p> }
 
             </div>
 
@@ -90,15 +84,7 @@ export default function Payment(){
                 name='document'
                 control={control}
                 render={({ field }) => (
-                  <IMaskInput
-                    type='text'
-                    id='document'
-                    mask={[
-                      { mask: '000.000.000-00', maxLength: 11 },
-                      { mask: '00.000.000/0000-00' },
-                    ]}
-                    {...field}
-                  />
+                  <input type='text' id='document' {...field} />
                 )}
               />
             </div>
