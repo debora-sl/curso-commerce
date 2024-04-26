@@ -98,13 +98,7 @@ export default function Payment(){
               name='zipCode'
               control={control}
               render={({ field }) => (
-                <IMaskInput
-                  type='text'
-                  id='zipCode'
-                  style={{ width: '120px' }}
-                  mask={'00000-000'}
-                  {...field}
-                />
+                <input type='text' id='zipCode' {...field} style={{ width: '120px' }}/>
               )}
             />
             {errors.zipCode && <p className='error'>{errors.zipCode.message}</p>}
