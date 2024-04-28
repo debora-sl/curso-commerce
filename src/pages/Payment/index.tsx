@@ -109,7 +109,9 @@ export default function Payment(){
             <Controller
               name='street'
               control={control}
-              render={({ field }) => <input type='text' id='street' {...field} />}
+              render={({ field }) => (
+              <input type='text' id='street' {...field} />
+              )}
             />
             {errors.street && <p className='error'>{errors.street.message}</p>}
           </div>
