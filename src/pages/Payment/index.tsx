@@ -72,9 +72,7 @@ export default function Payment(){
                 <input type='text' id='mobile' autoComplete='phone' {...field} />
               )}
             />
-
             { errors.mobile && <p className='error'>{errors.mobile.message}</p> }
-
             </div>
 
             <div className='field'>
@@ -210,24 +208,7 @@ export default function Payment(){
               name='creditCardNumber'
               control={control}
               render={({ field }) => (
-                <IMaskInput
-                  type='text'
-                  id='creditCardNumber'
-                  mask={[
-                    {
-                      mask: '0000 000000 0000',
-                      maxLength: 14,
-                    },
-                    {
-                      mask: '0000 000000 00000',
-                      maxLength: 15,
-                    },
-                    {
-                      mask: '0000 0000 0000 0000',
-                    },
-                  ]}
-                  {...field}
-                />
+                <input type='text' id='creditCardNumber' {...field} />
               )}
             />
             {errors.creditCardNumber && <p className='error'>{errors.creditCardNumber.message}</p>}
@@ -250,28 +231,7 @@ export default function Payment(){
                 name='creditCardExpiration'
                 control={control}
                 render={({ field }) => (
-                  <IMaskInput
-                    type='text'
-                    id='creditCardExpiration'
-                    mask={[
-                      {
-                        mask: 'MM/YY',
-                        blocks: {
-                          MM: {
-                            mask: IMask.MaskedRange,
-                            from: 1,
-                            to: 12,
-                          },
-                          YY: {
-                            mask: IMask.MaskedRange,
-                            from: new Date().getFullYear() - 2000,
-                            to: 99,
-                          },
-                        },
-                      },
-                    ]}
-                    {...field}
-                  />
+                  <input type='text' id='creditCardExpiration' {...field} />
                 )}
               />
               {errors.creditCardExpiration && (
@@ -286,7 +246,7 @@ export default function Payment(){
                 name='creditCardSecurityCode'
                 control={control}
                 render={({ field }) => (
-                  <IMaskInput type='text' id='creditCardSecurityCode' mask={'0000'} {...field} />
+                  <input type='text' id='creditCardSecurityCode' {...field} />
                 )}
               />
               {errors.creditCardSecurityCode && (
