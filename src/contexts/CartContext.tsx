@@ -46,6 +46,9 @@ interface CartProviderProps {
 //Função de Contexto
 export const CartContext = createContext({} as CartContextProps)
 
+//criando a const localStorage
+const localStorageKey = '@FoodCommerce:cart'
+
 // Função que prover
 export function CartProvider({children}: CartProviderProps) {
   //criando o hook para navegação
@@ -53,6 +56,15 @@ export function CartProvider({children}: CartProviderProps) {
 
   //criando o array carrinho
   const [cart, setCart] = useState<Snack[]>([])
+
+  // criando a função que salva o cart (carrinho)
+  function saveCart(items: Snack[]) {
+
+    setCart(items)
+
+    // salvando o cart
+    localStorage.setItem(localStorageKey, JSON.stringify(items))
+  }
 
     //criando a função que adiciona produto no carrinho
     function addSnackIntoCart(snack: SnackData): void {
@@ -74,7 +86,7 @@ export function CartProvider({children}: CartProviderProps) {
 
         console.log(`newCart de atualização`, newCart)
         toast.success(`Outro ${snackEmoji(snack.snack)} ${snack.name} adicionado no carrinho!` )
-        setCart(newCart)
+        saveCart(newCart)
 
         return
       }
@@ -86,14 +98,14 @@ export function CartProvider({children}: CartProviderProps) {
 
       console.log(`newCart de adição`, newCart)
       toast.success(`${snackEmoji(snack.snack)} ${snack.name} adicionado no carrinho!` )
-      setCart(newCart)
+      saveCart(newCart)
     }
 
     //criando a função que remove produto no carrinho
     function removeSnackFromCart(snack: Snack) {
       const newCart = cart.filter((item) => !(item.id === snack.id && item.snack === snack.snack))
 
-      setCart(newCart)
+      saveCart(newCart)
     }
 
     function upDateSnackQuantity(snack: Snack, newQuantity: number) {
