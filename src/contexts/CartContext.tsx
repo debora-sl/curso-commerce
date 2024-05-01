@@ -55,7 +55,13 @@ export function CartProvider({children}: CartProviderProps) {
   const navigate = useNavigate()
 
   //criando o array carrinho
-  const [cart, setCart] = useState<Snack[]>([])
+  const [cart, setCart] = useState<Snack[]>(() => {
+    const value = localStorage.getItem(localStorageKey)
+
+    if (value) return JSON.parse(value)
+
+    return []
+  })
 
   // criando a função que salva o cart (carrinho)
   function saveCart(items: Snack[]) {
@@ -64,6 +70,11 @@ export function CartProvider({children}: CartProviderProps) {
 
     // salvando o cart
     localStorage.setItem(localStorageKey, JSON.stringify(items))
+  }
+
+  // função que limpa o cart (carrinho)
+  function clearCart() {
+    localStorage.removeItem(localStorageKey)
   }
 
     //criando a função que adiciona produto no carrinho
@@ -147,6 +158,10 @@ export function CartProvider({children}: CartProviderProps) {
     //criando a função
     function payOrder(customer: CustomerData){
       console.log('payOrder', cart, customer)
+      // chamada de API para o backend
+
+      // deve ser executado após o retorno positivo da API
+      clearCart()
 
       return
     }
